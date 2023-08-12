@@ -71,6 +71,22 @@ class StudentController extends Controller
             ]);
         }
 
+        if (
+            DB::table('certificateApi')->where('id_course', $id_course)->first() == null
+        ) {
+            return view('user.course', [
+                'name' => collect(session('account'))->get('name'),
+                'topics' => $topic,
+                'id_course' => $id_course,
+                'subtopics' => $subtopics,
+                'content' => $content,
+                'quiz' => collect($quiz),
+                'score' => $score,
+                'certificate' => $certificate->first()
+            ]);
+        }
+
+
         return view('user.course', [
             'name' => collect(session('account'))->get('name'),
             'topics' => $topic,

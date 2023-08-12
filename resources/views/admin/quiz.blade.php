@@ -18,11 +18,11 @@
                             <label for="name">Name Quiz</label>
                             <input type="text" class="form-control" id="name" name="name" required>
 
-                            <label for="select">For subtopic</label>
-                            <select name="id_subtopic" class="form-select" id="select" required>
+                            <label for="select">For topic</label>
+                            <select name="id_topic" class="form-select" id="select" required>
                                 <option value="" selected>Choose ...</option>
-                                @foreach ($subtopics as $subtopic)
-                                    <option value="{{ $subtopic->id }}">{{ $subtopic->id }} : {{ $subtopic->name }}</option>
+                                @foreach ($topics as $topic)
+                                    <option value="{{ $topic->id }}">{{ $topic->id }} : {{ $topic->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -39,14 +39,14 @@
             <tr>
                 <th>Id Quiz</th>
                 <th>Name</th>
-                <th>For Subtopic</th>
+                <th>For Topic</th>
                 <th>Action</th>
             </tr>
             @foreach ($quiz as $q)
                 <tr>
                     <td>{{ $q->id }}</td>
                     <td class="text-capitalize"><a href="/admin/quiz/edit/{{ $q->id }}">{{ $q->name }}</a></td>
-                    <td>id: {{ $q->id_subtopic }} | name: {{ $subtopics->where('id', $q->id_subtopic)->first()->name }}</td>
+                    <td>id: {{ $q->id_topic }} | name: {{ $topics->where('id', $q->id_topic)->first()->name }}</td>
                     <td>
                         <button class="btn btn-danger" onclick="(confirm('semua soal yang ada dalam quiz ini akan ikut terhapus !!!')) ? location.href='/admin/quiz/delete/{{ $q->id }}' : ''">
                             <i class="fa-solid fa-trash"></i>
@@ -73,11 +73,11 @@
                                     <label for="name">Name Quiz</label>
                                     <input type="text" class="form-control" id="name" name="name" value="{{ $q->name }}" required>
 
-                                    <label for="select">For subtopic</label>
-                                    <select name="id_subtopic" class="form-select" id="select" required>
+                                    <label for="select">For topic</label>
+                                    <select name="id_topic" class="form-select" id="select" required>
                                         <option value="" selected>Choose ...</option>
-                                        @foreach ($subtopics as $subtopic)
-                                            <option value="{{ $subtopic->id }}" {{ $q->id_subtopic == $subtopic->id ? 'selected' : '' }}>{{ $subtopic->id }} : {{ $subtopic->name }}</option>
+                                        @foreach ($topics as $topic)
+                                            <option value="{{ $topic->id }}" {{ $q->id_topic == $topic->id ? 'selected' : '' }}>{{ $topic->id }} : {{ $topic->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

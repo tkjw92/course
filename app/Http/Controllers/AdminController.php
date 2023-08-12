@@ -213,8 +213,8 @@ class AdminController extends Controller
     public function quizView()
     {
         $quiz = DB::table('quiz')->get();
-        $subtopics = DB::table('subtopics')->get();
-        return view('admin.quiz', ['quiz' => collect($quiz), 'subtopics' => collect($subtopics)]);
+        $topics = DB::table('topics')->get();
+        return view('admin.quiz', ['quiz' => collect($quiz), 'topics' => collect($topics)]);
     }
 
     public function editQuizView($id)
@@ -274,7 +274,7 @@ class AdminController extends Controller
     {
         DB::table('quiz')->insert([
             'name' => $data->name,
-            'id_subtopic' => $data->id_subtopic,
+            'id_topic' => $data->id_topic,
         ]);
         return back();
     }
@@ -285,7 +285,7 @@ class AdminController extends Controller
             ->where('id', $data->id)
             ->update([
                 'name' => $data->name,
-                'id_subtopic' => $data->id_subtopic,
+                'id_topic' => $data->id_topic,
             ]);
         return back();
     }
