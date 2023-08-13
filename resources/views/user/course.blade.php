@@ -21,12 +21,36 @@
 
 @section('script')
     <script>
-        ClassicEditor.create(document.querySelector("#editor"), {
-            toolbar: [],
-        }).then(editor => {
-            editor.enableReadOnlyMode("editor");
-        }).catch(error => {
-            console.error(error);
-        });
+        let editor
+
+        CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+            toolbar: {
+                items: [],
+            },
+            removePlugins: [
+                'CKBox',
+                'CKFinder',
+                'EasyImage',
+                'RealTimeCollaborativeComments',
+                'RealTimeCollaborativeTrackChanges',
+                'RealTimeCollaborativeRevisionHistory',
+                'PresenceList',
+                'Comments',
+                'TrackChanges',
+                'TrackChangesData',
+                'RevisionHistory',
+                'Pagination',
+                'WProofreader',
+                'MathType',
+                'SlashCommand',
+                'Template',
+                'DocumentOutline',
+                'FormatPainter',
+                'TableOfContents'
+            ]
+        }).then(newEditor => {
+            editor = newEditor;
+            editor.enableReadOnlyMode('editor');
+        })
     </script>
 @endsection
